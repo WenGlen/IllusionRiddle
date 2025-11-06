@@ -1,0 +1,10 @@
+.MullerLyer-Block{
+    position: relative;
+    background-color: var(--muller-mainColor);
+}
+
+.MullerLyerLine-side{
+    position: absolute;
+    height: var(--muller-lineThickness);
+    background-color: var(--muller-sideColor);
+}

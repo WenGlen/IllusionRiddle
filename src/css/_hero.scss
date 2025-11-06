@@ -1,0 +1,206 @@
+@use "sass:math";
+
+@layer base { /* hero variables */
+    :root {
+      --hero-fontSize: 160px;
+      --hero-lineHeight: 0.9;
+      --lineHeight: calc( var(--hero-fontSize) * var(--hero-lineHeight));
+      --2lineHeight: calc(var(--lineHeight) * 2);
+      --ILL-letterSpacing:59px;
+      --hero-letterSpacing: 0.25em;
+      --hero-spacing: 120px;
+      --hero-2spacing: calc(var(--hero-spacing)*2);
+      --hero-3spacing: calc(var(--hero-spacing)*3);
+      --hero-frameHeight: calc(var(--lineHeight) - 5px);
+
+      --hero-Xregulate: -560px;
+      --hero-Yregulate: -180px;
+      --hero-Ybetween: 200px;
+
+    }
+  }
+
+#hero {
+    font-family: "Climate Crisis", sans-serif;
+    color: var(--foreground);
+    font-size: var(--hero-fontSize);
+    line-height: var(--hero-lineHeight);
+    letter-spacing: var(--hero-letterSpacing);
+}
+  
+.absolute-Frame{ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.hero-Frame-ILL { 
+    height: var(--hero-frameHeight);
+    letter-spacing: -6px;
+    width:calc(var(--ILL-letterSpacing) - 6px);
+
+}
+
+.hero-Frame-usion { 
+    height: calc(var(--lineHeight) + 5px);
+}
+
+
+
+/* 動畫時間軸-位移 */
+$ILL_Duration: 4;
+
+$ILL_LtoI_start: 0;
+$ILL_LtoI_end: 1;
+$ILL_ItoL_start: 4;
+$ILL_ItoL_end: 5;
+$ILL_all_end: 12;
+
+$R_Duration: $ILL_Duration * 2;
+
+$R_LLtoR_start: 8;
+$R_LLtoR_end: 9;
+$R_RtoLL_start: 16;
+$R_RtoLL_end: 17;
+
+$R_LtoI_start: 0;
+$R_LtoI_end: 1;
+$R_ItoL_start: 16;
+$R_ItoL_end: 17;
+
+$R_all_end: 24;
+
+$ILL_toPrimary_start: 12;
+$ILL_toPrimary_end: 13;
+$ILL_toForeground_start: 16;
+$ILL_toForeground_end: 17;
+
+// 計算 keyframes 百分比
+$ILL_LtoI_start_percent: math.div($ILL_LtoI_start, $ILL_all_end) * 100%;
+$ILL_LtoI_end_percent: math.div($ILL_LtoI_end, $ILL_all_end) * 100%;
+$ILL_ItoL_start_percent: math.div($ILL_ItoL_start, $ILL_all_end) * 100%;
+$ILL_ItoL_end_percent: math.div($ILL_ItoL_end, $ILL_all_end) * 100%;
+
+$ILL_toPrimary_start_percent: math.div($ILL_toPrimary_start, $R_all_end) * 100%;
+$ILL_toPrimary_end_percent: math.div($ILL_toPrimary_end, $R_all_end) * 100%;
+$ILL_toForeground_start_percent: math.div($ILL_toForeground_start, $R_all_end) * 100%;
+$ILL_toForeground_end_percent: math.div($ILL_toForeground_end, $R_all_end) * 100%;
+
+$R_LLtoI_start_percent: math.div($ILL_LtoI_start, $R_all_end) * 100%;
+$R_LLtoI_end_percent: math.div($ILL_LtoI_end, $R_all_end) * 100%;
+$R_ItoLL_start_percent: math.div($ILL_ItoL_start, $R_all_end) * 100%;
+$R_ItoLL_end_percent: math.div($ILL_ItoL_end, $R_all_end) * 100%;
+$R_LLtoR_start_percent: math.div($R_LLtoR_start, $R_all_end) * 100%;
+$R_LLtoR_end_percent: math.div($R_LLtoR_end, $R_all_end) * 100%;
+$R_RtoLL_start_percent: math.div($R_RtoLL_start, $R_all_end) * 100%;
+$R_RtoLL_end_percent: math.div($R_RtoLL_end, $R_all_end) * 100%;
+$R_LtoI_start_percent: math.div($R_LtoI_start, $R_all_end) * 100%;
+$R_LtoI_end_percent: math.div($R_LtoI_end, $R_all_end) * 100%;
+$R_ItoL_start_percent: math.div($R_ItoL_start, $R_all_end) * 100%;
+$R_ItoL_end_percent: math.div($R_ItoL_end, $R_all_end) * 100%;
+
+
+@layer base { /* hero variables */
+  :root {
+    /* hero animations */
+    --ILL_Duration: #{$ILL_Duration};
+    --R_Duration: #{$R_Duration};
+    /* 動畫時間控制 */
+    --ILL_duration: #{$ILL_Duration}s;
+    --ILL_-1-delay: calc(#{$ILL_Duration}s * (-1/3));
+    --ILL_0-delay: calc(#{$ILL_Duration}s * (0/3));
+    --ILL_1-delay: calc(#{$ILL_Duration}s * (1/3));
+    --ILL_2-delay: calc(#{$ILL_Duration}s * (2/3));
+    --ILL_3-delay: calc(#{$ILL_Duration}s * (3/3));
+    --R_duration: #{$R_Duration}s;
+  }
+}
+
+.hero-ILL-I1 { 
+  animation: animate-ILL-I var(--ILL_duration) ease-in-out infinite;
+  animation-delay: var(--ILL_0-delay);
+}
+
+.hero-ILL-I2 { 
+  animation: animate-ILL-I var(--ILL_duration) ease-in-out infinite;
+  animation-delay: var(--ILL_1-delay);
+}
+
+.hero-ILL-I3 { 
+  animation: animate-ILL-I var(--ILL_duration) ease-in-out infinite;
+  animation-delay: var(--ILL_2-delay);
+}
+
+.hero-ILL-Usion { 
+  animation: animate-ILL-Usion var(--R_duration) ease-in-out infinite;
+  animation-delay: var(--ILL_0-delay);
+}
+
+
+@keyframes animate-ILL-I {
+    #{$ILL_LtoI_start_percent} { transform: translateX(calc( (-2) * var(--ILL-letterSpacing)  ));}
+    #{$ILL_LtoI_end_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  )); }
+    #{$ILL_ItoL_start_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  ));  }
+    #{$ILL_ItoL_end_percent} { transform: translateX(calc( (-0) * var(--ILL-letterSpacing)  )); }
+    100% {  transform: translateX(calc( (-0) * var(--ILL-letterSpacing)  ));  }
+}
+
+@keyframes animate-ILL-Usion {
+    0% { transform: translateY(0);}
+    #{$ILL_toPrimary_start_percent} { transform: translateY(0);}
+    #{$ILL_toPrimary_end_percent} { transform: translateY(calc( (-1) * var(--lineHeight)  )); }
+    #{$ILL_toForeground_start_percent} { transform: translateY(calc( (-1) * var(--lineHeight)  ));  }
+    #{$ILL_toForeground_end_percent} { transform: translateY(calc( (-2) * var(--lineHeight)  )); }
+    100% {  transform: translateY(calc( (-2) * var(--lineHeight)  ));  }
+}
+
+
+
+.hero-RI-I1 { 
+    animation: animate-RI-I1 var(--R_duration) ease-in-out infinite;
+    animation-delay: var(--ILL_-1-delay);
+}
+
+.hero-RI-I2 { 
+    animation: animate-RI-I1 var(--R_duration) ease-in-out infinite;
+    animation-delay: var(--ILL_0-delay);
+}
+
+.hero-RI-R { 
+    animation: animate-RI-R var(--R_duration) ease-in-out infinite;
+    animation-delay: var(--ILL_0-delay);
+}
+
+.hero-RI-I3 { 
+    animation: animate-RI-I3 var(--R_duration) ease-in-out infinite;
+    animation-delay: var(--ILL_1-delay);
+}
+
+@keyframes animate-RI-I1 {
+    0% { transform: translateY(0);}
+    #{$R_LLtoI_start_percent} { transform: translateX(0);}
+    #{$R_LLtoI_end_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  )); }
+    #{$R_ItoLL_start_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  ));  }
+    #{$R_ItoLL_end_percent} { transform: translateX(calc( (-2) * var(--ILL-letterSpacing)  )); }
+    100% {  transform: translateX(calc( (-2) * var(--ILL-letterSpacing)  ));  }
+}
+
+@keyframes animate-RI-R {
+    0% { transform: translateY(0);}
+    #{$R_LLtoR_start_percent} { transform: translateY(0);}
+    #{$R_LLtoR_end_percent} { transform: translateY(calc( (-1) * var(--lineHeight)  )); }
+    #{$R_RtoLL_start_percent} { transform: translateY(calc( (-1) * var(--lineHeight)  ));  }
+    #{$R_RtoLL_end_percent} { transform: translateY(calc( (-2) * var(--lineHeight)  )); }
+    100% {  transform: translateY(calc( (-2) * var(--lineHeight)  ));  }
+}
+  
+
+@keyframes animate-RI-I3 {
+    0% { transform: translateY(0);}
+    #{$R_LtoI_start_percent} { transform: translateX(0);}
+    #{$R_LtoI_end_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  )); }
+    #{$R_ItoL_start_percent} { transform: translateX(calc( (-1) * var(--ILL-letterSpacing)  ));  }
+    #{$R_ItoL_end_percent} { transform: translateX(calc( (-2) * var(--ILL-letterSpacing)  )); }
+    100% {  transform: translateX(calc( (-2) * var(--ILL-letterSpacing)  ));  }
+}

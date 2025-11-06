@@ -1,0 +1,331 @@
+@use 'hero';
+@use 'HeringIllusion';
+@use 'JastrowIllusion';
+@use 'MullerLyerIllusion';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base { /* variables */
+  :root {
+    --background: hsl(0 0% 0%);
+    --foreground: hsl(0 0% 90%);
+    
+    --primary: hsl(45 100% 50%);
+    --primary-hover: hsl(45 90% 80%); 
+    --primary-muted: hsl(45 60% 30%);
+    --primary-strong: hsl(45 100% 50%);
+    --primary-foreground: hsl(45 70% 20%);
+    
+    --secondary: hsl(180 100% 50%);
+    --secondary-hover: hsl(180 90% 80%);
+    --secondary-muted: hsl(180 60% 30%);
+    --secondary-strong: hsl(180 100% 50%);
+    --secondary-foreground: hsl(190 70% 20%);
+
+
+    --text: hsl(200 30% 80%);
+    --text-muted: hsl(200 10% 60%);
+    --text-subtle: hsl(200 20% 30%);
+    --text-emphasis: hsl(0 0% 100%);
+
+    --border: hsl(200 20% 80%);
+    --border-muted: hsl(200 10% 60%);
+    --border-subtle: hsl(200 10% 40%);
+    --border-strong: hsl(200 20% 20%);
+    --border-foreground: hsl(200 20% 10%);
+    
+
+    --accent: hsl(315 80% 60%);
+    --accent-foreground: hsl(315 50% 20%);
+    --accent-muted: hsl(315 30% 70%);
+
+    --panel: hsl(200 20% 30%);
+    --panel-foreground: hsl(200 20% 50%);
+
+    --gray-50:  hsl(200 10% 95%);
+    --gray-100: hsl(200 10% 90%);
+    --gray-200: hsl(200 10% 80%);
+    --gray-300: hsl(200 10% 70%);
+    --gray-400: hsl(200 10% 60%);
+    --gray-500: hsl(200 10% 50%);
+    --gray-600: hsl(200 10% 40%);
+    --gray-700: hsl(200 10% 30%);
+    --gray-800: hsl(200 10% 20%);
+    --gray-900: hsl(200 10% 10%);
+    --gray-950: hsl(200 10% 05%);
+  }
+
+}
+
+@layer base { /* variables */
+  :root {
+    --primaryThickness: 4px;
+  }
+
+}
+
+@layer utilities { /* flex & absolute */
+
+  .absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .absolute-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* col--start */
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .flex-col-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+  .flex-col-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .flex-col-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* col--center */
+  .flex-col-center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-col-start-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .flex-col-end-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .flex-col-between-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* col--end */
+  .flex-col-center-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+  }
+  
+  .flex-col-start-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+  }
+
+  .flex-col-end-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+  }
+
+  .flex-col-between-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+
+  /* row--start */
+  .flex-row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .flex-row-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+
+  .flex-row-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  .flex-row-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* row--center */
+  .flex-row-center-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-row-start-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .flex-row-end-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .flex-row-between-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* row--end */
+  .flex-row-center-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+  }
+  
+  .flex-row-start-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: end;
+  }
+
+  .flex-row-end-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+  }
+
+  .flex-row-between-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
+@layer utilities { /* transition */
+  .ease-in-out-100 {transition: all 0.1s ease-in-out;}
+  .ease-in-out-200 {transition: all 0.2s ease-in-out;}
+  .ease-in-out-300 {transition: all 0.3s ease-in-out;}
+  .ease-in-out-400 {transition: all 0.4s ease-in-out;}
+  .ease-in-out-500 {transition: all 0.5s ease-in-out;}
+  .ease-in-out-600 {transition: all 0.6s ease-in-out;}
+  .ease-in-out-700 {transition: all 0.7s ease-in-out;}
+  .ease-in-out-800 {transition: all 0.8s ease-in-out;}
+  .ease-in-out-900 {transition: all 0.9s ease-in-out;}
+  .ease-in-out-1000 {transition: all 1s ease-in-out;}
+}
+@layer utilities { /* scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Abril Fatface", sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.screen-fix {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+}
+
+.bg-gradient-focus {
+  background: linear-gradient(to bottom, var(--background),var(--background), transparent, transparent, var(--background),var(--background));
+}
+
+.bg-gradient-obstruction {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 80deg,         /* 12點到2點鐘 */
+    var(--background) 80deg 100deg,  /* 2點到4點鐘著色 */
+    transparent 100deg 260deg,      /* 4點到8點鐘透明 */
+    var(--background) 260deg 280deg, /* 8點到10點鐘著色 */
+    transparent 280deg 360deg       /* 10點到12點鐘透明 */
+  );
+
+}
+
+
+
+
+
+
+.border-test {
+  border: 1px solid red;
+}
+
+.border-test2 {
+  border: 1px solid blue;
+}
+
+.bg-test {
+  background: rgba(0, 0, 255, 0.5);
+}
+
+.bg-gradient-test {
+  background:  
+    linear-gradient(to bottom,  white 0% , transparent 0.1% , transparent 24.9%, black 25% , transparent 25.1% , transparent 49.9%, white 50% , transparent 50.1% , transparent 74.9%, black 75% , transparent 75.1% , transparent 99.9% , white 100%),
+    linear-gradient(to bottom, hsl(200 70% 50% / 0.3), hsl(45 70% 50% / 0.3));
+}
+

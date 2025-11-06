@@ -1,0 +1,21 @@
+@layer base { /* hering illusion variables */
+    :root {
+      --hering-EyeHeight: 120px;
+      --hering-EyeballHeight: 80px;
+
+      --hering-EyeHeight-half: calc(var(--hering-EyeHeight) / 2);
+    }
+  }
+
+.radial-line{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    height: 1px;
+    min-width: 150vh;
+    width: 150vw;
+    background-color: var(--border);
+
+    transition: opacity 0.1s ease-in-out;
+}

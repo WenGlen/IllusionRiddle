@@ -1,0 +1,49 @@
+
+@layer base { /* variables */
+    :root {
+
+      --jastrow-spacing: 220px;
+      --jastrow-2spacing: calc(var(--jastrow-spacing) * 2);
+      --jastrow-3spacing: calc(var(--jastrow-spacing) * 3);
+      --jastrow-4spacing: calc(var(--jastrow-spacing) * 4);
+    }
+  
+  }
+
+
+.Arc {
+
+    --arc-innerRatio: calc(100% * (var(--arc-innerRadius) / (var(--arc-innerRadius) + var(--arc-thickness))));
+
+    width: calc(var(--arc-innerRadius)*2);
+    height: calc(var(--arc-innerRadius)*2);
+
+    background: conic-gradient(
+      from var(--arc-startAngle),
+      var(--arc-color) 0deg var(--arc-angle),
+      transparent var(--arc-angle) 360deg,
+    );
+    -webkit-mask:
+    radial-gradient(farthest-side, black 99.9%, transparent 100%),
+    radial-gradient(farthest-side, black var(--arc-innerRatio), transparent calc(var(--arc-innerRatio) + 0.1%));
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+
+    transform: translateX(calc(-1 * var(--arc-innerRadius)));
+  }
+
+.wave-line {
+  width: 100px;
+
+  background-color: var(--border-muted);
+  -webkit-mask: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 0 40 200'>\
+  <path d='M10 0 Q 0 12.5 10 25 T10 50 T10 75 T10 100' fill='none' stroke='black' stroke-width='10' />\
+  </svg>") repeat-y;
+
+}
+
+
+  
+
+  
