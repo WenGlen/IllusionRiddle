@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollContainer from '../components/ScrollContainer';
 import QuestionModal from '../components/QuestionModal';
-import HeringAnswer from '../components/HeringAnswer';
+import HeringAnswer from '../components/answerSection/HeringAnswer';
+
 
 interface sectionProps {
     show?: "" | "hidden";
@@ -99,9 +100,9 @@ export default function HeringIllusion({
             let eyeRadius = 100000;
             if (scrollProgress >= answerMiddle && scrollProgress <= answerEnd) {
                 const reduceProgress = (scrollProgress - answerMiddle) / (answerEnd - answerMiddle);
-                eyeRadius = 100000 /(reduceProgress*100);
+                eyeRadius = 100000 /(reduceProgress*200);
             } else if (scrollProgress > answerEnd) {
-                eyeRadius = 1000;
+                eyeRadius = 500;
             }
 
             setEyeRadius(eyeRadius);
@@ -151,7 +152,6 @@ export default function HeringIllusion({
             <section id="hering-illusion" className={`relative screen-fix ${showStatus[show]}`}>
 
 
-
                 <div className="absolute-center z-10  w-full h-full  pointer-events-none overflow-hidden"> 
                     <div /*overlay-focus*/ className="absolute-center z-20 bg-gradient-focus w-full h-full"></div>
                     <div id="radial-lines" 
@@ -183,7 +183,7 @@ export default function HeringIllusion({
                     onConfirm={(value) => {
                         // 驗證答案：不分大小寫，忽略前後空白
                         const trimmedValue = value.trim().toLowerCase();
-                        const correctAnswers = ['eye', 'eyes', 'eyelid', 'eyelids', 'blink'];
+                        const correctAnswers = ['eye', 'eyes', '眼', '眼睛' , 'eyelid', 'eyelids', '眼皮' , '眼瞼' , 'blink' , '眨眼'];
                         const isCorrect = correctAnswers.includes(trimmedValue);
                         
                         if (isCorrect && onAnswerCorrect) {

@@ -1,6 +1,6 @@
 import ScrollContainer from '../components/ScrollContainer';
-import HeringAnswer from '../components/HeringAnswer';
-import { useRef } from 'react';
+import HeringAnswer from '../components/answerSection/HeringAnswer';
+//import { useRef } from 'react';
 
 interface sectionProps {
     show?: "" | "hidden";
@@ -15,10 +15,12 @@ export default function Test({
         show=""
     }: sectionProps) {
 
-        const scrollContainerRef = useRef<HTMLDivElement>(null);
-        const testScrollProgress = (scrollProgress: number) => {
 
-        };
+
+        //const scrollContainerRef = useRef<HTMLDivElement>(null);
+        //const testScrollProgress = (scrollProgress: number) => {
+
+        //};
         const eyeRadius = 100000/1;
 
         return (
@@ -41,7 +43,7 @@ export default function Test({
 
                 <HeringAnswer eyeRadius={ eyeRadius } />
 
-                <ScrollContainer height="600vh" ref={scrollContainerRef} onScroll={testScrollProgress}/>
+                <ScrollContainer height="600vh" /*ref={scrollContainerRef} onScroll={testScrollProgress}*//>
                 
 
             </section>
@@ -50,3 +52,37 @@ export default function Test({
 
 
 
+
+/*
+Hering Illusion
+Müller-Lyer Illusion (Brentano Illusion)
+
+
+Ebbinghaus Illusion ⊙ ◎
+Caffee wall Illusion 
+Poggendorff Illusion 
+Helmholtz Illusion ||| ☰
+Mach band effect 
+Ponzo Illusion
+Zöllner Illusion
+
+
+__Gestalt__
+Breathing Illusion
+
+__XXX__
+Fechner Illusion
+Vertigo Illusion
+Phantom Illusion
+Double Vision Illusion
+Apparent Motion Illusion
+
+
+Stereoblind Illusion
+Horizon Illusion
+Stroop Illusion
+Kusner Illusion
+Superposition Illusion
+Warren Illusion
+Pecking Order Illusion
+*/

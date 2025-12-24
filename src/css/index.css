@@ -5,7 +5,7 @@
     --hero-lineHeight: 0.9;
     --lineHeight: calc( var(--hero-fontSize) * var(--hero-lineHeight));
     --2lineHeight: calc(var(--lineHeight) * 2);
-    --ILL-letterSpacing:59px;
+    --ILL-letterSpacing:61px;
     --hero-letterSpacing: 0.25em;
     --hero-spacing: 120px;
     --hero-2spacing: calc(var(--hero-spacing)*2);
@@ -22,6 +22,16 @@
   font-size: var(--hero-fontSize);
   line-height: var(--hero-lineHeight);
   letter-spacing: var(--hero-letterSpacing);
+  position: relative;
+}
+#hero > div {
+  transform: rotate(90deg) scale(calc(100vh / 1400px));
+  transform-origin: center center;
+}
+@media (max-width: 768px) {
+  #hero > div {
+    transform: rotate(90deg) scale(calc(100vh / 1400px * 0.8));
+  }
 }
 
 .absolute-Frame {
@@ -33,8 +43,8 @@
 
 .hero-Frame-ILL {
   height: var(--hero-frameHeight);
-  letter-spacing: -6px;
-  width: calc(var(--ILL-letterSpacing) - 6px);
+  letter-spacing: -5px;
+  width: calc(var(--ILL-letterSpacing) - 8px);
 }
 
 .hero-Frame-usion {
@@ -512,12 +522,30 @@ body {
   scroll-snap-stop: always;
 }
 
+.RWDbox {
+  transform-origin: center center;
+  transform: scale(calc(100dvh / 1400px));
+  border: 1px solid red;
+}
+@media (max-width: 768px) {
+  .RWDbox {
+    transform: scale(calc(100vh / 1400px * 0.8));
+  }
+}
+
 .bg-gradient-focus {
   background: linear-gradient(to bottom, var(--background), var(--background), transparent, transparent, var(--background), var(--background));
 }
 
 .bg-gradient-obstruction {
   background: conic-gradient(from 0deg, transparent 0deg 80deg, var(--background) 80deg 100deg, transparent 100deg 260deg, var(--background) 260deg 280deg, transparent 280deg 360deg);
+}
+
+.lines {
+  transform-origin: center center;
+  width: 200px;
+  height: 1px;
+  background: var(--border);
 }
 
 .border-test {

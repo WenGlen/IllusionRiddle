@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:string";
 
 @layer base { /* hero variables */
     :root {
@@ -6,7 +7,7 @@
       --hero-lineHeight: 0.9;
       --lineHeight: calc( var(--hero-fontSize) * var(--hero-lineHeight));
       --2lineHeight: calc(var(--lineHeight) * 2);
-      --ILL-letterSpacing:59px;
+      --ILL-letterSpacing:61px;
       --hero-letterSpacing: 0.25em;
       --hero-spacing: 120px;
       --hero-2spacing: calc(var(--hero-spacing)*2);
@@ -26,6 +27,20 @@
     font-size: var(--hero-fontSize);
     line-height: var(--hero-lineHeight);
     letter-spacing: var(--hero-letterSpacing);
+    
+    // 確保內容居中
+    position: relative;
+    
+    // 內部內容容器自動縮放：以 1400px 為基準，縮放到 100vh，同時旋轉90度
+    > div { 
+        transform: rotate(90deg) scale(#{string.unquote('calc(100vh / 1400px)')});
+        transform-origin: center center;
+        
+        // 手機版額外縮放 0.8
+        @media (max-width: 768px) {
+            transform: rotate(90deg) scale(#{string.unquote('calc(100vh / 1400px * 0.8)')});
+        }
+    }
 }
   
 .absolute-Frame{ 
@@ -37,8 +52,8 @@
 
 .hero-Frame-ILL { 
     height: var(--hero-frameHeight);
-    letter-spacing: -6px;
-    width:calc(var(--ILL-letterSpacing) - 6px);
+    letter-spacing: -5px;
+    width:calc(var(--ILL-letterSpacing) - 8px);
 
 }
 

@@ -1,7 +1,8 @@
 import ScrollContainer from '../components/ScrollContainer';
 import { useRef, useState } from 'react';
-import MullerLyerLine from '../components/MullerLyerLine';
+import MullerLyerLine from '../components/element/MullerLyerLine';
 import QuestionModal from '../components/QuestionModal';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface sectionProps {
     show?: "" | "hidden";
@@ -20,7 +21,7 @@ export default function MullerLyerIllusion({
     }: sectionProps) {
 
         const numberOfLines = 8;
-        const lineSpace = 150;
+        const lineSpace = 100;
 
         const totalSteps = 16;
         const groundAppearStart = 1 /totalSteps;
@@ -47,6 +48,7 @@ export default function MullerLyerIllusion({
         const [showModal, setShowModal] = useState(false);
         const [hasAnswered, setHasAnswered] = useState(false);
         const [justWatchedAgain, setJustWatchedAgain] = useState(false);
+        const isMobile = useIsMobile();
 
         
         const MullerLyerScrollProgress = (scrollProgress: number) => {
@@ -74,6 +76,7 @@ export default function MullerLyerIllusion({
             setGroundWidth(groundWidth);
 
             let stepMoveY = 0;
+            const stepMoveYMax = isMobile ? 380 : 350;
             let bottomMoveY = 0;
             let topMoveY = 0;
 
@@ -83,13 +86,13 @@ export default function MullerLyerIllusion({
                 topMoveY = 0;
             } else if (scrollProgress > stepMoveEnd) {
                 stepMoveY = totalHeight;
-                bottomMoveY = 250;
-                topMoveY = 500;
+                bottomMoveY = 150;
+                topMoveY = stepMoveYMax;
             } else { 
                 const stepMoveProgress = (scrollProgress - stepMoveStart) / (stepMoveEnd - stepMoveStart);
                 stepMoveY = stepMoveProgress * totalHeight;
-                bottomMoveY = Math.min(250, 1.5*stepMoveY);
-                topMoveY = Math.max( 0 , 1.5 * ( stepMoveY - totalHeight )+500);
+                bottomMoveY = Math.min(150, 1.5*stepMoveY);
+                topMoveY = Math.max( 0 , 1.5 * ( stepMoveY - totalHeight )+stepMoveYMax);
             }
             setStepMoveY(stepMoveY);
             setBottomMoveY(bottomMoveY);
@@ -106,7 +109,8 @@ export default function MullerLyerIllusion({
             }
             setSideOpacity(sideOpacity);
 
-            const widthChangeRange = 200;
+            // 如果是移動裝置（寬度小於 md），寬度變化範圍減半
+            const widthChangeRange = isMobile ? 100 : 150;
             let linesWidthChange = 0;
             if (scrollProgress >= answerMiddle && scrollProgress <= answerEnd) {
                 const ChangeProgress = (scrollProgress - answerMiddle) / (answerEnd - answerMiddle);
@@ -119,7 +123,7 @@ export default function MullerLyerIllusion({
         };
 
 
-        // sideDirection 變換區
+        // 滑動時 sideDirection 變換區
         const centerY = 0; 
         const transitionRange = 150; // (px)
         const centerStart = centerY - transitionRange / 2; 
@@ -138,6 +142,7 @@ export default function MullerLyerIllusion({
             }
         };
 
+        // 滑動時 opacity 變換區
         const calculateOpacity = (baseY: number) => {
 
             const actualY = baseY + stepMoveY;
@@ -194,21 +199,23 @@ export default function MullerLyerIllusion({
                        <div className="h-px w-full bg-border opacity-25" style={{ width:`${Math.max(0, groundWidth-75)}vw` , transform: `translateY(${lineSpace+60}px)` }}></div>
                     </div>
 
-                    <div /* top */ style={{ transform: `translateY(${topMoveY}px)` }}>
-                        <div className="flex-col-start-center h-[75px] overflow-hidden" 
+                    <div /* top */ className="scale-50 md:scale-100"
+                                   style={{ transform: `translateY(${topMoveY}px)` }}>
+                        <div className="flex-col-start-center" 
                              style={{ transform: `translateY(${-totalHeight}px)` }}>
-                            <div style={{ transform: `translateY(0px)` }}>
-                                <div className="h-px w-[200px] bg-primary" style={{ transform: `rotate(-45deg) translateX(-100px)` }}/>
-                                <div className="h-px w-[200px] bg-primary" style={{ transform: `rotate(45deg) translateX(100px)` }}/>
-                            </div>
-                            <div style={{ transform: `translateY(25px)` }}>
-                                <div className="h-px w-[200px] bg-primary opacity-75" style={{ transform: `rotate(-45deg) translateX(-100px)` }}/>
-                                <div className="h-px w-[200px] bg-primary opacity-75" style={{ transform: `rotate(45deg) translateX(100px)` }}/>
-                            </div>
-                            <div style={{ transform: `translateY(50px)` }}>
-                                <div className="h-px w-[200px] bg-primary opacity-50" style={{ transform: `rotate(-45deg) translateX(-100px)` }}/>
-                                <div className="h-px w-[200px] bg-primary opacity-50" style={{ transform: `rotate(45deg) translateX(100px)` }}/>
-                            </div>
+
+                        <svg 
+                            width={60}
+                            height={50}
+                        >
+                            <path
+                                d={`M 30 0 L 60 45 L 0 45 Z`}
+                                fill="none"
+                                stroke="var(--primary)"
+                                strokeWidth="1"
+                            />
+                        </svg>
+
                         </div>
                     </div>
 
@@ -227,7 +234,7 @@ export default function MullerLyerIllusion({
                     onConfirm={(value) => {
                         // 驗證答案：不分大小寫，忽略前後空白
                         const trimmedValue = value.trim().toLowerCase();
-                        const correctAnswers = ['pyramid', 'tower'];
+                        const correctAnswers = ['pyramid','金字塔','tower','塔'];
                         const isCorrect = correctAnswers.includes(trimmedValue);
                         
                         if (isCorrect && onAnswerCorrect) {

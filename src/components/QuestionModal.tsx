@@ -121,10 +121,10 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
             {/* 彈窗內容 */}
             <div className="fixed inset-0 z-50 flex-col-center-center pointer-events-none">
                 <div 
-                    className="bg-background  rounded-lg p-8 shadow-lg max-w-md w-full mx-8 pointer-events-auto"
+                    className="bg-background rounded-md p-8 shadow-lg max-w-sm w-full mx-8 pointer-events-auto border border-border-muted"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 text-md md:text-lg">
 
                         <input
                             ref={inputRef}
@@ -132,20 +132,20 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             placeholder={placeholder}
-                            className="w-full px-6 py-4 border border-primary rounded bg-background text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            className="w-full px-6 py-4 border border-primary rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                             onKeyDown={handleKeyDown}
                         />
                         <div className="flex-col-center-center gap-2 mt-6">
 
                             <button
                                 onClick={handleBack}
-                                className="px-4 py-2 border border-border rounded w-full"
+                                className="px-4 py-2 border border-border rounded w-full hover:bg-border-subtle"
                             >
                                 Watch Again
                             </button>
                             <button
                                 onClick={handleCancel}
-                                className="px-4 py-2 border border-border rounded w-full"
+                                className="px-4 py-2 border border-border rounded w-full hover:bg-border-subtle"
                             >
                                 See Final
                             </button>
@@ -153,7 +153,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
                             <button
                                 onClick={handleConfirm}
                                 disabled={!inputValue.trim()}
-                                className="px-4 py-2 bg-border text-primary-foreground rounded w-full hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2 bg-border text-primary-foreground rounded w-full hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-border"
                             >
                                 Confirm Answer
                             </button>

@@ -1,4 +1,8 @@
+import { useIsMobile } from '../../hooks/useIsMobile';
+
 interface MullerLyerLineProps {
+    wMd?: number;
+    wSm?: number;
     w?: number;
     wPlus?: number;
     minSideWidth?: number;
@@ -19,10 +23,13 @@ interface MullerLyerLineProps {
 
 
 export default function MullerLyerLine({
-    w = 600,
+    wMd = 400,
+    wSm = 250,
+    w,
     wPlus = 0,
+    minSideWidth = 30,
+    mainThickness = "var(--primaryThickness)",
     lineThickness = "var(--primaryThickness)",
-    mainThickness = "8px",
     mainColor = "var(--primary)",
     sideColor = "var(--border)",
     className = "",
@@ -33,8 +40,11 @@ export default function MullerLyerLine({
     sideOpacity = 1,
    
 }: MullerLyerLineProps) {
+    const isMobile = useIsMobile();
 
-    const minSideWidth = 50;
+    // 如果沒有傳入 w，根據裝置大小設定預設值：md 以下 200，否則 300
+    const lineWidth = w !== undefined ? w : (isMobile ? wSm : wMd);
+
     const sideAngle = sideDirection * 120 + 30 ;
     const sideWidth = minSideWidth * Math.abs(1/Math.sin((sideAngle * Math.PI) / 180));
 
@@ -49,7 +59,7 @@ export default function MullerLyerLine({
         <div className={`absolute-center ${className}`} > 
             <div style={{ transform: `translate(${x},${y})`, opacity: opacity }}>
                 <div className={`MullerLyer-Block`}
-                     style={{ width: `${w+wPlus}px` , height:mainThickness , ...style}}>
+                     style={{ width: `${lineWidth+wPlus}px` , height:mainThickness , ...style}}>
                     <div style={{ opacity: sideOpacity }}>
                         <div className={`MullerLyerLine-side top-0 left-0 origin-left`}  style={{ width: `${sideWidth}px`, transform: `rotate(${-sideAngle}deg)` }}/>
                         <div className={`MullerLyerLine-side bottom-0 left-0 origin-left`}  style={{ width: `${sideWidth}px`, transform: `rotate(${sideAngle}deg)` }}/>

@@ -1,4 +1,4 @@
-import AbsoluteArc from '../components/Arc';
+import AbsoluteArc from '../components/element/Arc';
 import ScrollContainer from '../components/ScrollContainer';
 import { useRef, useState } from 'react';
 

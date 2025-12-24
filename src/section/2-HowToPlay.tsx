@@ -12,7 +12,7 @@ const showStatus = {
 
 export default function HowToPlay({
     show="",
-    content= "Look at the illusion.<br/>Imagine and make it stronger.<br/>Find the word!",
+    content= "Look at the illusion.<br/>Amplify the illusion effect.<br/>Find the word!",
   }: sectionProps) {
     const lines = content.split('<br/>');
     

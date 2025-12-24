@@ -2,6 +2,7 @@
 @use 'HeringIllusion';
 @use 'JastrowIllusion';
 @use 'MullerLyerIllusion';
+@use "sass:string";
 
 @tailwind base;
 @tailwind components;
@@ -290,6 +291,25 @@ body {
 
 }
 
+.RWDbox {
+  // 內部內容容器自動縮放：以 1400px 為基準，縮放到 100vh
+  transform-origin: center center;
+  transform: scale(#{string.unquote('calc(100dvh / 1400px)')});
+
+  
+  // 手機版額外縮放 0.8
+  @media (max-width: 768px) {
+      transform: scale(#{string.unquote('calc(100vh / 1400px * 0.8)')});
+  }
+  border: 1px solid red;
+}
+
+
+
+
+
+
+
 .bg-gradient-focus {
   background: linear-gradient(to bottom, var(--background),var(--background), transparent, transparent, var(--background),var(--background));
 }
@@ -306,9 +326,24 @@ body {
 
 }
 
+.lines{
+  transform-origin: center center;
+  width: 200px;
+  height: 1px;
+  background: var(--border);
+}
 
+.general-line {
+  height: 1px;
+  background: var(--border);
+  min-height: 1px;
+}
 
-
+.general-line-horizontal {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
 
 
 .border-test {

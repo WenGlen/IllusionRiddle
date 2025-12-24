@@ -13,7 +13,7 @@ export default function Hero({
     return (
       <section id="hero" className={`w-screen h-screen flex-col-center-center snap-start snap-always ${showStatus[show]}`}>
 
-        <div className="relative rotate-90">
+        <div className="relative">
 
           <div className="absolute-start translate-x-[var(--hero-Xregulate)] translate-y-[var(--hero-Yregulate)]">
 
